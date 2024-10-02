@@ -32,7 +32,7 @@ ao3pub
 └── testbed
 ```
 
-## Use
+## Starting the testbed
 
 When the directory structure is set up, you'll be able to enter the testbed
 directory and start the Compose project:
@@ -41,3 +41,21 @@ directory and start the Compose project:
 cd testbed
 docker compose up
 ```
+
+## Accessing the testbed
+
+Through the magic of nginx, the frontend's files live in the `/` HTTP path and
+the backend's routes live in the `/api` path.
+
+### Testing the frontend
+
+You'll be able to test frontend functionality by navigating to
+`http://localhost:8080` in your preferred browser.
+
+### Testing the backend
+
+Similarly, you'll be able to access backend functionality by prefixing the route
+with `http://localhost:8080/api`. For example, the API route
+`/work/<work_id>/metadata` becomes
+`http://localhost:8080/api/work/<work_id>/metadata`. This can be tested with
+your favorite HTTP client (curl, Postman, etc.)
