@@ -1,0 +1,24 @@
+networks:
+  ao3pub-svcs:
+services:
+  back:
+    build: ../back
+    networks:
+      - ao3pub-svcs
+  front:
+    build: ../front
+    environment:
+      - ORIGIN=http://back:8080
+    networks:
+      - ao3pub-svcs
+  router:
+    image: nginx:1.27-bookworm
+    depends_on:
+      - back
+      - front
+    networks:
+      - ao3pub-svcs
+    ports:
+      - "8080:80"
+    volumes:
+      - ./ao3pub-router-nginx-config.conf:/etc/nginx/nginx.conf:ro
