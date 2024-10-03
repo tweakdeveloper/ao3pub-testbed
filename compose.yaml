@@ -4,10 +4,18 @@ networks:
 services:
   back:
     build: ../back
+    develop:
+      watch:
+        - action: rebuild
+          path: ../back
     networks:
       - ao3pub-svcs
   front:
     build: ../front
+    develop:
+      watch:
+        - action: rebuild
+          path: ../front
     environment:
       - ORIGIN=http://back:8080
     networks:
