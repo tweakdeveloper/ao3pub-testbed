@@ -22,9 +22,6 @@ services:
       - ao3pub-svcs
   router:
     image: nginx:1.27-bookworm
-    depends_on:
-      - back
-      - front
     networks:
       - ao3pub-svcs
     ports:
