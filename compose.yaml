@@ -1,3 +1,4 @@
+name: ao3pub
 networks:
   ao3pub-svcs:
 services:
