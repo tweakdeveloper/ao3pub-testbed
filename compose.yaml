@@ -17,7 +17,7 @@ services:
         - action: rebuild
           path: ../front
     environment:
-      - ORIGIN=http://back:8080
+      - ORIGIN=http://localhost:8080
     networks:
       - ao3pub-svcs
   router:
