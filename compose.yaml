@@ -11,15 +11,23 @@ services:
     networks:
       - ao3pub-svcs
   front:
-    build: ../front
+    build:
+      context: ../front
+      dockerfile: Dockerfile.testbed
+    command: npm run dev -- --host
     develop:
       watch:
-        - action: rebuild
+        - action: sync
+          ignore:
+            - node_modules
           path: ../front
-    environment:
-      - ORIGIN=http://localhost:8080
+          target: /app
+        - action: rebuild
+          path: ../front/package.json
     networks:
       - ao3pub-svcs
+    ports:
+      - "9090:9090"
   router:
     image: nginx:1.27-bookworm
     networks:
